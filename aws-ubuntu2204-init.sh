@@ -27,9 +27,9 @@ sudo apt install chrony
 
 set -x
 
-match="#\ See\ http:\/\/www.pool.ntp.org\/join.html for more information."
+match="#\ See\ http:\/\/www.pool.ntp.org\/join.html\ for\ more\ information."
 insert="server\ 169.254.169.123\ prefer\ iburst\ minpoll\ 4\ maxpoll\ 4"
-file="/etc/chrony/chrony.conf.bak"
+file="/etc/chrony/chrony.conf"
 
 sudo sed -i "s/$match/$match\n$insert/" $file
 
