@@ -27,14 +27,21 @@ sudo apt install chrony
 
 set -x
 
-match="#\ See\ http:\/\/www.pool.ntp.org\/join.html\ for\ more\ information."
-insert="server\ 169.254.169.123\ prefer\ iburst\ minpoll\ 4\ maxpoll\ 4"
-file="/etc/chrony/chrony.conf"
+match='# See http:\/\/www.pool.ntp.org\/join.html for more information.'
+insert='server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4'
+file='/etc/chrony/chrony.conf'
 
-sudo sed -i "s/$match/$match\n$insert/" $file
+if ! grep -q "$insert" $file; then 
+  sudo sed -i "s/$match/$match\n$insert/" $file
+fi
 
 sudo /etc/init.d/chrony restart
 
+sleep 1
+
 set +x
+
+chronyc sources -v
+chronyc tracking
 
 echo "========== [script done] ========================="
