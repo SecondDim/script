@@ -33,11 +33,10 @@ file='/etc/chrony/chrony.conf'
 
 if ! grep -q "$insert" $file; then 
   sudo sed -i "s/$match/$match\n$insert/" $file
+  sudo /etc/init.d/chrony restart
+  
+  sleep 1
 fi
-
-sudo /etc/init.d/chrony restart
-
-sleep 1
 
 set +x
 
