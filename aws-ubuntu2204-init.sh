@@ -14,7 +14,7 @@ echo "=================================================="
 
 set -x
 
-curl -s https://raw.githubusercontent.com/SecondDim/script/main/.bash_aliases > ~/.bash_aliases
+curl https://raw.githubusercontent.com/SecondDim/script/main/.bash_aliases > ~/.bash_aliases
 
 set +x
 
