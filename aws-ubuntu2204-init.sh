@@ -12,7 +12,11 @@ echo "=================================================="
 echo "========== download file ========================="
 echo "=================================================="
 
+set -x
+
 curl -s https://raw.githubusercontent.com/SecondDim/script/main/.bash_aliases > ~/.bash_aliases
+
+set +x
 
 echo "=================================================="
 echo "========== set aws ntp ==========================="
