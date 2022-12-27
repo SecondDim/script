@@ -70,6 +70,7 @@ sudo chmod 644 ssr.service
 sudo systemctl status ssr
 # sudo systemctl start ssr
 
+sudo systemctl enable ssr.service
 
 # [Install]
 # WantedBy=multi-user.target
