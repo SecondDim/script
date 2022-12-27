@@ -49,6 +49,8 @@ cd .acme.sh/
 sudo sysctl net.ipv4.ip_unprivileged_port_start=443
 # ./acme.sh --issue --alpn -d ddd.dddddd.dddd.dddd --server letsencrypt --force
 
+sudo echo "\nnet.ipv4.ip_unprivileged_port_start=80\n" >> /etc/sysctl.d/99-sysctl.conf
+
 
 echo "=================================================="
 echo "========== set systemd ==========================="
@@ -67,12 +69,12 @@ sudo chmod 644 ssr.service
 # ExecStart=/home/ben.tsou/ssr/ssserver -c /home/ben.tsou/ssr/shadowsocks.json
 # Restart=always
 
+# [Install]
+# WantedBy=multi-user.target
+
 sudo systemctl status ssr
 # sudo systemctl start ssr
 
 sudo systemctl enable ssr.service
-
-# [Install]
-# WantedBy=multi-user.target
 
 echo "========== [script done] ========================="
