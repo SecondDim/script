@@ -31,16 +31,16 @@ time.windows.com
 time.facebook.com
 
 # 國家實驗室 https://www.stdtime.gov.tw/chinese/bulletin/NTP%20promo.txt
-server tick.stdtime.gov.tw
-server tock.stdtime.gov.tw
-server time.stdtime.gov.tw
-server clock.stdtime.gov.tw
-server watch.stdtime.gov.tw
+tick.stdtime.gov.tw
+tock.stdtime.gov.tw
+time.stdtime.gov.tw
+clock.stdtime.gov.tw
+watch.stdtime.gov.tw
 ```
 
 ## 一些補充資訊
 1. ptp(2002年) 比 ntp 精準，提供 ns 等級同步，不過要硬體支援
 2. 國家實驗室的資訊已經有點過時
 3. 這些都是 UTC 時間
-4. UTC, UT1, ITA, GMT 這幾個關鍵字可以聊解一下
+4. UTC, UT1, ITA, GMT 這幾個關鍵字可以瞭解一下
 5. 同步時間的方式還有: 短波授時, GPS
