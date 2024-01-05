@@ -8,8 +8,8 @@ echo "=================================================="
 
 mkdir ~/ssr && cd ~/ssr
 
-wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.15.1/shadowsocks-v1.15.1.aarch64-unknown-linux-gnu.tar.xz
-tar Jxvf shadowsocks-v1.15.1.aarch64-unknown-linux-gnu.tar.xz
+wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.17.1/shadowsocks-v1.17.1.aarch64-unknown-linux-gnu.tar.xz
+tar Jxvf shadowsocks-v1.17.1.aarch64-unknown-linux-gnu.tar.xz
 
 touch shadowsocks.json
 # {
@@ -21,7 +21,7 @@ touch shadowsocks.json
 #       "timeout": 3600,
 #       "fast_open": true,
 #       "plugin": "v2ray-plugin",
-#       "plugin_opts": "server;tls;host=ddd.dddddd.dddd.dddd"
+#       "plugin_opts": "server;tls;host=ddd.dddddd.dddd.dddd;cert=[path_to_cert]/fullchain.cer;key=[path_to_key]/ddd.dddddd.dddd.dddd.key;"
 # }
 
 sudo setcap CAP_NET_BIND_SERVICE=+eip ssserver
@@ -49,6 +49,7 @@ cd .acme.sh/
 sudo sysctl net.ipv4.ip_unprivileged_port_start=443
 # ./acme.sh --issue --alpn -d ddd.dddddd.dddd.dddd --server letsencrypt --force
 
+# root only
 sudo echo "\nnet.ipv4.ip_unprivileged_port_start=80\n" >> /etc/sysctl.d/99-sysctl.conf
 
 
@@ -65,8 +66,8 @@ sudo chmod 644 ssr.service
 
 # [Service]
 # User=ben.tsou
-# WorkingDirectory=/home/ben.tsou/ssr/
-# ExecStart=/home/ben.tsou/ssr/ssserver -c /home/ben.tsou/ssr/shadowsocks.json
+# WorkingDirectory=/home/[username]/ssr/
+# ExecStart=/home/[username]/ssr/ssserver -c /home/[username]/ssr/shadowsocks.json
 # Restart=always
 
 # [Install]
