@@ -8,8 +8,10 @@ echo "=================================================="
 
 mkdir ~/ssr && cd ~/ssr
 
-wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.17.1/shadowsocks-v1.17.1.aarch64-unknown-linux-gnu.tar.xz
-tar Jxvf shadowsocks-v1.17.1.aarch64-unknown-linux-gnu.tar.xz
+wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.24.0/shadowsocks-v1.24.0.aarch64-unknown-linux-gnu.tar.xz
+tar Jxvf shadowsocks-v1.24.0.aarch64-unknown-linux-gnu.tar.xz
+
+# openssl rand -base64 32
 
 touch shadowsocks.json
 # {
@@ -17,12 +19,14 @@ touch shadowsocks.json
 #       "mode": "tcp_and_udp",
 #       "server_port": 443,
 #       "password": "[[set your password]]",
-#       "method": "chacha20-ietf-poly1305",
+#       "method": "2022-blake3-aes-256-gcm",
 #       "timeout": 3600,
 #       "fast_open": true,
 #       "plugin": "v2ray-plugin",
 #       "plugin_opts": "server;tls;host=ddd.dddddd.dddd.dddd;cert=[path_to_cert]/fullchain.cer;key=[path_to_key]/ddd.dddddd.dddd.dddd.key;"
 # }
+
+# "method": "2022-blake3-chacha20-poly1305",
 
 sudo setcap CAP_NET_BIND_SERVICE=+eip ssserver
 # ./ssserver -c shadowsocks.json
@@ -39,6 +43,24 @@ tar zxvf v2ray-plugin-linux-arm64-v1.3.2.tar.gz
 sudo cp v2ray-plugin_linux_arm64 /usr/local/bin/v2ray-plugin
 
 echo "=================================================="
+echo "============= qtun ==============================="
+echo "=================================================="
+
+# Not recommended
+# sudo apt-get install unzip
+mkdir ~/qtun && cd ~/qtun
+
+wget https://github.com/shadowsocks/qtun/releases/download/v0.3.0/qtun-aarch64-unknown-linux-musl-v0.3.0.zip
+unzip qtun-aarch64-unknown-linux-musl-v0.3.0.zip
+tar Jxvf qtun-v0.3.0.aarch64-unknown-linux-musl.tar.xz
+
+sudo cp qtun-server /usr/local/bin/qtun-server
+
+# "mode": "tcp_only",
+# "plugin": "qtun-server",
+# "plugin_opts": "mode=tls;cert=/path/to/cert;key=/path/to/key"
+
+echo "=================================================="
 echo "========== acme.sh ==============================="
 echo "=================================================="
 
@@ -50,7 +72,7 @@ sudo sysctl net.ipv4.ip_unprivileged_port_start=443
 # ./acme.sh --issue --alpn -d ddd.dddddd.dddd.dddd --server letsencrypt --force
 
 # root only
-sudo echo "\nnet.ipv4.ip_unprivileged_port_start=80\n" >> /etc/sysctl.d/99-sysctl.conf
+# sudo echo "\nnet.ipv4.ip_unprivileged_port_start=80\n" >> /etc/sysctl.d/99-sysctl.conf
 
 
 echo "=================================================="
