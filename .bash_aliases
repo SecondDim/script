@@ -3,8 +3,10 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias rebash="exec $SHELL -l"
-alias ip='curl http://checkip.amazonaws.com; curl ifconfig.me/ip; echo '
-alias rand='openssl rand -base64 48'
+alias ipp='curl http://checkip.amazonaws.com; curl ifconfig.me/ip; echo '
+alias rand='openssl rand -base64 32'
+alias rand48='openssl rand -base64 48'
+alias rand56='openssl rand -base64 56'
 
 alias gfa="git fetch --all --prune"
 alias gc="git checkout"
