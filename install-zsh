@@ -1,0 +1,12 @@
+# https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
+# ubuntu
+sudo apt install zsh
+chsh -s $(which zsh)
+echo $SHELL
+$SHELL --version
+
+# https://github.com/ohmyzsh/ohmyzsh/wiki
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# https://github.com/zthxxx/jovial
+curl -sSL https://github.com/zthxxx/jovial/raw/master/installer.sh | sudo -E bash -s ${USER:=`whoami`}
